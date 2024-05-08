@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace fabrikaotomasyonu
 {
-    public partial class Form1 : Form
+    public partial class Anasayfa : Form
     {
-        public Form1()
+        public Anasayfa()
         {
             InitializeComponent();
+        }
+
+        private void personelBtn_Click(object sender, EventArgs e)
+        {
+            Personel personel = new Personel();
+            this.Hide();
+            personel.Show();
         }
     }
 }
