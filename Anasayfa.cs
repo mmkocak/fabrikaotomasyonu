@@ -23,5 +23,12 @@ namespace fabrikaotomasyonu
             this.Hide();
             personel.Show();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Yemekhane yemekhane = new Yemekhane();
+            this.Hide();
+            yemekhane.Show();
+        }
     }
 }

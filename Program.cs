@@ -16,7 +16,7 @@ namespace fabrikaotomasyonu
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login_Page());
+            Application.Run(new Anasayfa());
 
         }
     }

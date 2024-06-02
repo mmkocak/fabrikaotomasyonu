@@ -20,7 +20,7 @@ namespace fabrikaotomasyonu
         private const string connectionString = "Server=DESKTOP-I3I4IR2\\SQLEXPRESS; Database=fabrikaDb; Trusted_Connection=True;";
         private void listeleBtn_Click(object sender, EventArgs e)
         {
-            string query = "SELECT PersId, PersAd, PersSoyAd, PersNo FROM personel";
+            string query = "SELECT PersId, PersAd, PersSoyAd, PersNo, cinsiyet FROM personel";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -40,7 +40,9 @@ namespace fabrikaotomasyonu
             string ad = adTb.Text;
             string soyad = soyadTb.Text;
             string numara = noTb.Text;
-            string query = "INSERT INTO personel (PersId, PersAd, PersSoyAd, PersNo) VALUES (@id, @ad, @soyad, @numara)";
+            string idm = idTb.Text;
+            string cinsiyet = cinsCb.SelectedItem.ToString();
+            string query = "INSERT INTO personel (PersAd, PersSoyAd, PersNo, cinsiyet, PersId) VALUES (@ad, @soyad, @numara, @cinsiyet, @idm)";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 if (string.IsNullOrEmpty(ad) || string.IsNullOrEmpty(soyad) || string.IsNullOrEmpty(numara))
@@ -56,6 +58,8 @@ namespace fabrikaotomasyonu
                 command.Parameters.AddWithValue("@ad", ad);
                 command.Parameters.AddWithValue("@soyad", soyad);
                 command.Parameters.AddWithValue("@numara", numara);
+                command.Parameters.AddWithValue("@cinsiyet", cinsiyet);
+                command.Parameters.AddWithValue("@idm", idm);
 
                 // Komutu çalıştır
                 int rowsAffected = command.ExecuteNonQuery();
@@ -124,9 +128,10 @@ namespace fabrikaotomasyonu
             string yeniAd = adTb.Text;
             string yeniSoyad = soyadTb.Text;
             string yeniNumara = noTb.Text;
+            string cinsiyet = cinsCb.SelectedValue.ToString();
 
             // Güncelleme sorgusu
-            string query = "UPDATE personel SET PersAd=@ad, PersSoyAd=@soyad, PersNo=@numara WHERE PersId=@persId";
+            string query = "UPDATE personel SET PersAd=@ad, PersSoyAd=@soyad, PersNo=@numara, cinsiyet=@cinsiyet WHERE PersId=@persId ";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -139,6 +144,7 @@ namespace fabrikaotomasyonu
                 command.Parameters.AddWithValue("@soyad", yeniSoyad);
                 command.Parameters.AddWithValue("@numara", yeniNumara);
                 command.Parameters.AddWithValue("@persId", persId);
+                command.Parameters.AddWithValue("@cinsiyet", cinsiyet);
 
                 // Komutu çalıştır
                 int rowsAffected = command.ExecuteNonQuery();
@@ -152,6 +158,13 @@ namespace fabrikaotomasyonu
                     MessageBox.Show("Belirtilen PersId'ye sahip bir personel bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Anasayfa anasayfa = new Anasayfa();
+            anasayfa.Show();
+            this.Hide();
         }
     }
     
