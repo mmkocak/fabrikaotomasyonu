@@ -30,5 +30,24 @@ namespace fabrikaotomasyonu
             this.Hide();
             yemekhane.Show();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            pmuhasebe pancarmuh = new pmuhasebe();
+            this.Hide();
+            pancarmuh.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            stok stoks = new stok();
+            stoks.Hide();
+            stoks.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

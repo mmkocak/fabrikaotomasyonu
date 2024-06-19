@@ -11,33 +11,30 @@ using System.Windows.Forms;
 
 namespace fabrikaotomasyonu
 {
-    public partial class Yemekhane : Form
+    public partial class stok : Form
     {
-        public Yemekhane()
+        public stok()
         {
             InitializeComponent();
         }
         private const string connectionString = "Server=DESKTOP-I3I4IR2\\SQLEXPRESS; Database=fabrikaDb; Trusted_Connection=True;";
-        private int GetNextYemeklId(SqlConnection connection)
+        private int GetNextstokId(SqlConnection connection)
         {
-            string query = "SELECT ISNULL(MAX(id), 0) + 1 FROM yemekhaneTbl";
+            string query = "SELECT ISNULL(MAX(id), 0) + 1 FROM stokTbl";
             SqlCommand command = new SqlCommand(query, connection);
             object result = command.ExecuteScalar();
             return Convert.ToInt32(result);
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            string yemekAd = yemekTb.Text;
+            string kalan = KalanTb.Text;
             string tarih = dateTimePicker1.Value.Date.ToString();
-            string ikinciyemek = ikinciTb.Text;
             string idmm = idm.Text;
-            string icecekler = icecek.Text;
-            string ucuncu = ucuncuTb.Text;
-            
-            string query = "INSERT INTO yemekhaneTbl (yemekid, anayemek, icecek, ikincicesit, ucuncucesit, tarih) VALUES (@idmm, @yemekAd, @icecekler, @ikinciyemek, @ucuncu, @tarih)";
+            string query = "INSERT INTO stokTbl (stid, kalan, tarih) VALUES (@idmm, @kalan, @tarih)";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                if (string.IsNullOrEmpty(yemekAd) || string.IsNullOrEmpty(tarih) || string.IsNullOrEmpty(icecekler))
+                if (string.IsNullOrEmpty(kalan) || string.IsNullOrEmpty(tarih))
                 {
                     MessageBox.Show("Lütfen tüm alanları doldurun!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -46,12 +43,9 @@ namespace fabrikaotomasyonu
 
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@id", GetNextYemeklId(connection));
-                command.Parameters.AddWithValue("@yemekAd", yemekAd);
+                command.Parameters.AddWithValue("@id", GetNextstokId(connection));
+                command.Parameters.AddWithValue("@kalan", kalan);
                 command.Parameters.AddWithValue("@tarih", tarih);
-                command.Parameters.AddWithValue("@ikinciyemek", ikinciyemek);
-                command.Parameters.AddWithValue("@icecekler", icecekler);
-                command.Parameters.AddWithValue("@ucuncu", ucuncu);
                 command.Parameters.AddWithValue("@idmm", idmm);
 
                 // Komutu çalıştır
@@ -59,18 +53,18 @@ namespace fabrikaotomasyonu
 
                 if (rowsAffected > 0)
                 {
-                    MessageBox.Show("Yemek başarıyla eklendi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Stok başarıyla eklendi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Yemek eklenirken bir hata oluştu!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Stok eklenirken bir hata oluştu!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void listeleBtn_Click(object sender, EventArgs e)
         {
-            string query = "SELECT yemekid, anayemek, icecek, ikincicesit, ucuncucesit, tarih FROM yemekhaneTbl";
+            string query = "SELECT stid, kalan, tarih FROM stokTbl";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -87,23 +81,16 @@ namespace fabrikaotomasyonu
 
         private void button2_Click(object sender, EventArgs e)
         {
+
+            string kalan = KalanTb.Text;
+            string tarih = dateTimePicker1.Value.Date.ToString();
             if (!int.TryParse(idm.Text, out int idmm) || idmm <= 0)
             {
                 MessageBox.Show("Lütfen geçerli bir id girin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-
-            string yemekAd = yemekTb.Text;
-            string tarih = dateTimePicker1.Value.Date.ToString();
-            string ikinciyemek = ikinciTb.Text;
-          
-
-            string icecekler = icecek.Text;
-            string ucuncu = ucuncuTb.Text;
-
-            // Güncelleme sorgusu
-            string query = "UPDATE yemekhaneTbl SET anayemek=@yemekAd, icecek=@icecekler, ikincicesit=@ikinciyemek, ucuncucesit=@ucuncu, tarih=@tarih WHERE yemekid=@idmm ";
+            string query = "UPDATE stokTbl SET kalan=@kalan, tarih=@tarih WHERE stid=@idmm ";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -112,11 +99,8 @@ namespace fabrikaotomasyonu
 
                 // SQL komutu ve parametreleri oluştur
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@yemekAd", yemekAd);
+                command.Parameters.AddWithValue("@kalan", kalan);
                 command.Parameters.AddWithValue("@tarih", tarih);
-                command.Parameters.AddWithValue("@ikinciyemek", ikinciyemek);
-                command.Parameters.AddWithValue("@icecekler", icecekler);
-                command.Parameters.AddWithValue("@ucuncu", ucuncu);
                 command.Parameters.AddWithValue("@idmm", idmm);
 
                 // Komutu çalıştır
@@ -124,11 +108,11 @@ namespace fabrikaotomasyonu
 
                 if (rowsAffected > 0)
                 {
-                    MessageBox.Show("Yemek başarıyla güncellendi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Stok başarıyla güncellendi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Belirtilen id'ye ait bir yemek bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Belirtilen id de Stok bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -140,7 +124,7 @@ namespace fabrikaotomasyonu
                 MessageBox.Show("Lütfen geçerli bir id girin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            string query = "DELETE FROM yemekhaneTbl WHERE yemekid=@idmm";
+            string query = "DELETE FROM stokTbl WHERE stid=@idmm";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -156,11 +140,11 @@ namespace fabrikaotomasyonu
 
                 if (rowsAffected > 0)
                 {
-                    MessageBox.Show("yemek başarıyla silindi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Stok başarıyla silindi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Belirtilen id'ye ait bir yemek bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Belirtilen id'ye ait Stok bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

@@ -124,21 +124,23 @@ namespace fabrikaotomasyonu
                 return;
             }
 
-            // Yeni ad, soyad ve numara değerlerini al
             string yeniAd = adTb.Text;
             string yeniSoyad = soyadTb.Text;
             string yeniNumara = noTb.Text;
-            string cinsiyet = cinsCb.SelectedValue.ToString();
+            string cinsiyet = cinsCb.SelectedItem.ToString();
 
-            // Güncelleme sorgusu
-            string query = "UPDATE personel SET PersAd=@ad, PersSoyAd=@soyad, PersNo=@numara, cinsiyet=@cinsiyet WHERE PersId=@persId ";
+            if (string.IsNullOrEmpty(yeniAd) || string.IsNullOrEmpty(yeniSoyad) || string.IsNullOrEmpty(yeniNumara) || string.IsNullOrEmpty(cinsiyet))
+            {
+                MessageBox.Show("Lütfen tüm alanları doldurun!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string query = "UPDATE personel SET PersAd=@ad, PersSoyAd=@soyad, PersNo=@numara, cinsiyet=@cinsiyet WHERE PersId=@persId";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                // Veritabanı bağlantısını aç
                 connection.Open();
 
-                // SQL komutu ve parametreleri oluştur
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@ad", yeniAd);
                 command.Parameters.AddWithValue("@soyad", yeniSoyad);
@@ -146,7 +148,6 @@ namespace fabrikaotomasyonu
                 command.Parameters.AddWithValue("@persId", persId);
                 command.Parameters.AddWithValue("@cinsiyet", cinsiyet);
 
-                // Komutu çalıştır
                 int rowsAffected = command.ExecuteNonQuery();
 
                 if (rowsAffected > 0)
