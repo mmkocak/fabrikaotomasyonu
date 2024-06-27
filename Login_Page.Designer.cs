@@ -34,8 +34,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.kadiTb = new System.Windows.Forms.TextBox();
             this.ksifreTb = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,6 +80,20 @@
             this.ksifreTb.Name = "ksifreTb";
             this.ksifreTb.Size = new System.Drawing.Size(189, 22);
             this.ksifreTb.TabIndex = 4;
+            this.ksifreTb.TextChanged += new System.EventHandler(this.ksifreTb_TextChanged);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DarkBlue;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(190, 273);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(241, 33);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Giriş";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pictureBox1
             // 
@@ -90,19 +104,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.DarkBlue;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(155, 278);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(241, 33);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Giriş";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Login_Page
             // 

@@ -59,5 +59,9 @@ namespace fabrikaotomasyonu
 
         }
 
+        private void ksifreTb_TextChanged(object sender, EventArgs e)
+        {
+            ksifreTb.PasswordChar = '*';
+        }
     }
 }
