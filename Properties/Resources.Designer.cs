@@ -63,9 +63,29 @@ namespace fabrikaotomasyonu.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap back_1689837_1280 {
+            get {
+                object obj = ResourceManager.GetObject("back-1689837_1280", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap fabrica1 {
             get {
                 object obj = ResourceManager.GetObject("fabrica1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap factory_background_elements_vector {
+            get {
+                object obj = ResourceManager.GetObject("factory-background-elements-vector", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

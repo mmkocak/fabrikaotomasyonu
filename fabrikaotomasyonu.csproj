@@ -161,5 +161,10 @@
   <ItemGroup>
     <None Include="Resources\yemek1.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back-1689837_1280.png" />
+    <Content Include="Resources\factory-background-elements-vector.jpg" />
+    <None Include="Resources\factory-background-elements-vector1.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
