@@ -38,12 +38,12 @@
             this.button2 = new System.Windows.Forms.Button();
             this.btnEkle = new System.Windows.Forms.Button();
             this.listeleBtn = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.txtUrunAdi = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtFiyat = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -100,7 +100,7 @@
             this.button3.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(935, 355);
+            this.button3.Location = new System.Drawing.Point(696, 355);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(220, 43);
             this.button3.TabIndex = 67;
@@ -113,7 +113,7 @@
             this.button2.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(695, 355);
+            this.button2.Location = new System.Drawing.Point(446, 355);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(220, 43);
             this.button2.TabIndex = 66;
@@ -126,7 +126,7 @@
             this.btnEkle.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.btnEkle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnEkle.ForeColor = System.Drawing.Color.White;
-            this.btnEkle.Location = new System.Drawing.Point(441, 355);
+            this.btnEkle.Location = new System.Drawing.Point(188, 355);
             this.btnEkle.Name = "btnEkle";
             this.btnEkle.Size = new System.Drawing.Size(220, 43);
             this.btnEkle.TabIndex = 65;
@@ -139,36 +139,13 @@
             this.listeleBtn.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.listeleBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.listeleBtn.ForeColor = System.Drawing.Color.White;
-            this.listeleBtn.Location = new System.Drawing.Point(188, 355);
+            this.listeleBtn.Location = new System.Drawing.Point(954, 355);
             this.listeleBtn.Name = "listeleBtn";
             this.listeleBtn.Size = new System.Drawing.Size(220, 43);
             this.listeleBtn.TabIndex = 64;
             this.listeleBtn.Text = "Listele";
             this.listeleBtn.UseVisualStyleBackColor = false;
             this.listeleBtn.Click += new System.EventHandler(this.listeleBtn_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::fabrikaotomasyonu.Properties.Resources.factory_background_elements_vector;
-            this.pictureBox1.Location = new System.Drawing.Point(-1, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1340, 795);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 79;
-            this.pictureBox1.TabStop = false;
-            // 
-            // button4
-            // 
-            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(1246, 12);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(45, 47);
-            this.button4.TabIndex = 80;
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // txtUrunAdi
             // 
@@ -203,6 +180,29 @@
             this.label4.Size = new System.Drawing.Size(86, 20);
             this.label4.TabIndex = 83;
             this.label4.Text = "Ürün Fiyat";
+            // 
+            // button4
+            // 
+            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(1246, 12);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(45, 47);
+            this.button4.TabIndex = 80;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::fabrikaotomasyonu.Properties.Resources.factory_background_elements_vector;
+            this.pictureBox1.Location = new System.Drawing.Point(-1, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1340, 795);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 79;
+            this.pictureBox1.TabStop = false;
             // 
             // stok
             // 

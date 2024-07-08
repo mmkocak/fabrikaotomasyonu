@@ -13,26 +13,16 @@ namespace fabrikaotomasyonu
 {
     public partial class Personel : Form
     {
+        private const string connectionString = "Server=DESKTOP-I3I4IR2\\SQLEXPRESS; Database=fabrikaDb; Trusted_Connection=True;";
+        private SqlConnection connection;
         public Personel()
         {
+            connection = new SqlConnection(connectionString);
             InitializeComponent();
         }
-        private const string connectionString = "Server=DESKTOP-I3I4IR2\\SQLEXPRESS; Database=fabrikaDb; Trusted_Connection=True;";
         private void listeleBtn_Click(object sender, EventArgs e)
         {
-            string query = "SELECT PersId, PersAd, PersSoyAd, PersNo, cinsiyet FROM personel";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataAdapter adapter = new SqlDataAdapter(command);
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-
-                dataGridView1.DataSource = dataTable;
-            }
+            PersonelListeleme();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -40,132 +30,217 @@ namespace fabrikaotomasyonu
             string ad = adTb.Text;
             string soyad = soyadTb.Text;
             string numara = noTb.Text;
-            string idm = idTb.Text;
-            string cinsiyet = cinsCb.SelectedItem.ToString();
-            string query = "INSERT INTO personel (PersAd, PersSoyAd, PersNo, cinsiyet, PersId) VALUES (@ad, @soyad, @numara, @cinsiyet, @idm)";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            string cinsiyet = cinsCb.SelectedItem?.ToString(); // Null kontrolü
+            DateTime kayitTarihi = dateTimePicker1.Value; // Tarihi DateTimePicker'dan al
+            decimal perMaas;
+
+            // Maaşın geçerli bir sayı olup olmadığını kontrol edin
+            if (!decimal.TryParse(personelMaas.Text, out perMaas))
             {
-                if (string.IsNullOrEmpty(ad) || string.IsNullOrEmpty(soyad) || string.IsNullOrEmpty(numara))
-                {
-                    MessageBox.Show("Lütfen tüm alanları doldurun!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                connection.Open();
-
-                
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@id", GetNextPersonelId(connection)); 
-                command.Parameters.AddWithValue("@ad", ad);
-                command.Parameters.AddWithValue("@soyad", soyad);
-                command.Parameters.AddWithValue("@numara", numara);
-                command.Parameters.AddWithValue("@cinsiyet", cinsiyet);
-                command.Parameters.AddWithValue("@idm", idm);
-
-                // Komutu çalıştır
-                int rowsAffected = command.ExecuteNonQuery();
-
-                if (rowsAffected > 0)
-                {
-                    MessageBox.Show("Personel başarıyla eklendi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Personel eklenirken bir hata oluştu!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        // Veritabanında bir sonraki artan PersId değerini alır
-        private int GetNextPersonelId(SqlConnection connection)
-        {
-            string query = "SELECT ISNULL(MAX(PersId), 0) + 1 FROM personel";
-            SqlCommand command = new SqlCommand(query, connection);
-            object result = command.ExecuteScalar();
-            return Convert.ToInt32(result);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (!int.TryParse(idTb.Text, out int persId) || persId <= 0)
-            {
-                MessageBox.Show("Lütfen geçerli bir PersId girin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            string query = "DELETE FROM personel WHERE PersId=@persId";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                // Veritabanı bağlantısını aç
-                connection.Open();
-
-                // SQL komutu ve parametreleri oluştur
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@persId", persId);
-
-                // Komutu çalıştır
-                int rowsAffected = command.ExecuteNonQuery();
-
-                if (rowsAffected > 0)
-                {
-                    MessageBox.Show("Personel başarıyla silindi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Belirtilen PersId'ye sahip bir personel bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (!int.TryParse(idTb.Text, out int persId) || persId <= 0)
-            {
-                MessageBox.Show("Lütfen geçerli bir PersId girin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Lütfen geçerli bir maaş girin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string yeniAd = adTb.Text;
-            string yeniSoyad = soyadTb.Text;
-            string yeniNumara = noTb.Text;
-            string cinsiyet = cinsCb.SelectedItem.ToString();
-
-            if (string.IsNullOrEmpty(yeniAd) || string.IsNullOrEmpty(yeniSoyad) || string.IsNullOrEmpty(yeniNumara) || string.IsNullOrEmpty(cinsiyet))
+            // Boş alan kontrolü
+            if (string.IsNullOrEmpty(ad) || string.IsNullOrEmpty(soyad) || string.IsNullOrEmpty(numara) || string.IsNullOrEmpty(cinsiyet))
             {
                 MessageBox.Show("Lütfen tüm alanları doldurun!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string query = "UPDATE personel SET PersAd=@ad, PersSoyAd=@soyad, PersNo=@numara, cinsiyet=@cinsiyet WHERE PersId=@persId";
+            string query = "INSERT INTO personel (PersAd, PersSoyAd, PersNo, Cinsiyet, KayitTarihi, Pmaas) VALUES (@ad, @soyad, @numara, @cinsiyet, @ktarih, @perMaas)";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Open();
-
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@ad", yeniAd);
-                command.Parameters.AddWithValue("@soyad", yeniSoyad);
-                command.Parameters.AddWithValue("@numara", yeniNumara);
-                command.Parameters.AddWithValue("@persId", persId);
-                command.Parameters.AddWithValue("@cinsiyet", cinsiyet);
-
-                int rowsAffected = command.ExecuteNonQuery();
-
-                if (rowsAffected > 0)
+                try
                 {
-                    MessageBox.Show("Personel başarıyla güncellendi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@ad", ad);
+                        command.Parameters.AddWithValue("@soyad", soyad);
+                        command.Parameters.AddWithValue("@numara", numara);
+                        command.Parameters.AddWithValue("@cinsiyet", cinsiyet);
+                        command.Parameters.AddWithValue("@ktarih", kayitTarihi);
+                        command.Parameters.AddWithValue("@perMaas", perMaas);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Personel başarıyla eklendi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Personel eklenirken bir hata oluştu!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Veritabanı hatası: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Beklenmedik bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    if (connection.State == ConnectionState.Open)
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+
+
+        }
+
+        
+        // Silme
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                if (dataGridView1.SelectedRows[0].Cells["Id"].Value != null)
+                {
+                    try
+                    {
+                        int selectedId;
+                        if (int.TryParse(dataGridView1.SelectedRows[0].Cells["Id"].Value.ToString(), out selectedId))
+                        {
+                            string query = "DELETE FROM personel WHERE ID = @Id";
+
+                            using (SqlCommand command = new SqlCommand(query, connection))
+                            {
+                                command.Parameters.AddWithValue("@Id", selectedId);
+
+                                connection.Open();
+                                int rowsAffected = command.ExecuteNonQuery();
+
+                                if (rowsAffected > 0)
+                                {
+                                    MessageBox.Show("Personel başarıyla silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    PersonelListeleme();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Silme işlemi sırasında bir hata oluştu veya kayıt bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Geçersiz bir ID değeri seçildi.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Personel silinirken bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        if (connection.State == ConnectionState.Open)
+                            connection.Close();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Belirtilen PersId'ye sahip bir personel bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Lütfen silinecek bir satır seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Lütfen silinecek bir satır seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        // Güncelle
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                if (dataGridView1.SelectedRows[0].Cells["ID"].Value != null && int.TryParse(dataGridView1.SelectedRows[0].Cells["ID"].Value.ToString(), out int selectedId))
+                {
+                    // Alanların doluluğunu kontrol ediyoruz
+                    if (!string.IsNullOrEmpty(adTb.Text) && !string.IsNullOrEmpty(soyadTb.Text) && !string.IsNullOrEmpty(noTb.Text) && !string.IsNullOrEmpty(cinsCb.SelectedItem?.ToString()) && decimal.TryParse(personelMaas.Text, out decimal perMaas))
+                    {
+                        try
+                        {
+                            string query = "UPDATE personel SET PersAd = @ad, PersSoyAd = @soyad, PersNo = @numara, Cinsiyet = @cinsiyet, Pmaas = @perMaas WHERE ID = @persId";
+
+                            using (SqlConnection connection = new SqlConnection(connectionString))
+                            {
+                                using (SqlCommand command = new SqlCommand(query, connection))
+                                {
+                                    command.Parameters.AddWithValue("@persId", selectedId);
+                                    command.Parameters.AddWithValue("@ad", adTb.Text);
+                                    command.Parameters.AddWithValue("@soyad", soyadTb.Text);
+                                    command.Parameters.AddWithValue("@numara", noTb.Text);
+                                    command.Parameters.AddWithValue("@cinsiyet", cinsCb.SelectedItem.ToString());
+                                    command.Parameters.AddWithValue("@perMaas", perMaas);
+
+                                    connection.Open();
+                                    command.ExecuteNonQuery();
+
+                                    MessageBox.Show("Personel başarıyla güncellendi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                    PersonelListeleme();
+                                }
+                            }
+                        }
+                        catch (SqlException ex)
+                        {
+                            MessageBox.Show("Veri güncellenirken bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        finally
+                        {
+                            if (connection.State == ConnectionState.Open)
+                                connection.Close();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lütfen tüm alanları doldurun.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Geçersiz bir satır seçtiniz. Lütfen güncellenecek geçerli bir satır seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Lütfen güncellenecek bir satır seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+
+            private void button4_Click(object sender, EventArgs e)
         {
             Anasayfa anasayfa = new Anasayfa();
             anasayfa.Show();
             this.Hide();
+        }
+        private void PersonelListeleme()
+        {
+            string query = "SELECT ID, PersAd, PersSoyAd, PersNo, Cinsiyet, KayitTarihi, Pmaas FROM personel";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
+                    DataTable dataTable = new DataTable();
+                    dataAdapter.Fill(dataTable);
+                    dataGridView1.DataSource = dataTable;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Verileri yüklerken bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
     

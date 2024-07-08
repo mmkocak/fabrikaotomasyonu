@@ -43,6 +43,10 @@
             this.button4 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.personelMaas = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -103,7 +107,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(300, 151);
+            this.label1.Location = new System.Drawing.Point(230, 97);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 20);
             this.label1.TabIndex = 14;
@@ -113,7 +117,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(300, 206);
+            this.label2.Location = new System.Drawing.Point(230, 152);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 20);
             this.label2.TabIndex = 15;
@@ -121,21 +125,21 @@
             // 
             // adTb
             // 
-            this.adTb.Location = new System.Drawing.Point(408, 148);
+            this.adTb.Location = new System.Drawing.Point(338, 94);
             this.adTb.Name = "adTb";
             this.adTb.Size = new System.Drawing.Size(154, 22);
             this.adTb.TabIndex = 16;
             // 
             // soyadTb
             // 
-            this.soyadTb.Location = new System.Drawing.Point(408, 206);
+            this.soyadTb.Location = new System.Drawing.Point(338, 152);
             this.soyadTb.Name = "soyadTb";
             this.soyadTb.Size = new System.Drawing.Size(154, 22);
             this.soyadTb.TabIndex = 17;
             // 
             // noTb
             // 
-            this.noTb.Location = new System.Drawing.Point(844, 148);
+            this.noTb.Location = new System.Drawing.Point(845, 80);
             this.noTb.Name = "noTb";
             this.noTb.Size = new System.Drawing.Size(154, 22);
             this.noTb.TabIndex = 19;
@@ -144,7 +148,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label3.Location = new System.Drawing.Point(736, 151);
+            this.label3.Location = new System.Drawing.Point(737, 83);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(30, 20);
             this.label3.TabIndex = 18;
@@ -156,7 +160,7 @@
             this.cinsCb.Items.AddRange(new object[] {
             "Erkek",
             "Kız"});
-            this.cinsCb.Location = new System.Drawing.Point(844, 201);
+            this.cinsCb.Location = new System.Drawing.Point(845, 133);
             this.cinsCb.Name = "cinsCb";
             this.cinsCb.Size = new System.Drawing.Size(154, 24);
             this.cinsCb.TabIndex = 23;
@@ -165,7 +169,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label4.Location = new System.Drawing.Point(736, 208);
+            this.label4.Location = new System.Drawing.Point(737, 140);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(69, 20);
             this.label4.TabIndex = 24;
@@ -206,11 +210,49 @@
             this.dataGridView1.Size = new System.Drawing.Size(1108, 324);
             this.dataGridView1.TabIndex = 69;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label5.Location = new System.Drawing.Point(737, 201);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(93, 20);
+            this.label5.TabIndex = 71;
+            this.label5.Text = "Kayıt Tarihi";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(845, 198);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker1.TabIndex = 72;
+            // 
+            // personelMaas
+            // 
+            this.personelMaas.Location = new System.Drawing.Point(338, 213);
+            this.personelMaas.Name = "personelMaas";
+            this.personelMaas.Size = new System.Drawing.Size(154, 22);
+            this.personelMaas.TabIndex = 74;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label6.Location = new System.Drawing.Point(230, 213);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(50, 20);
+            this.label6.TabIndex = 73;
+            this.label6.Text = "Maaş";
+            // 
             // Personel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1339, 786);
+            this.Controls.Add(this.personelMaas);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label4);
@@ -254,5 +296,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.TextBox personelMaas;
+        private System.Windows.Forms.Label label6;
     }
 }
