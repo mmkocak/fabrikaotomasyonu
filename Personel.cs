@@ -34,7 +34,7 @@ namespace fabrikaotomasyonu
             DateTime kayitTarihi = dateTimePicker1.Value; // Tarihi DateTimePicker'dan al
             decimal perMaas;
 
-            // Maaşın geçerli bir sayı olup olmadığını kontrol edin
+            
             if (!decimal.TryParse(personelMaas.Text, out perMaas))
             {
                 MessageBox.Show("Lütfen geçerli bir maaş girin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -242,6 +242,43 @@ namespace fabrikaotomasyonu
                 }
             }
         }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            
+            int rowIndex = e.RowIndex;
+
+            
+            adTb.Clear();
+            soyadTb.Clear();
+            noTb.Clear();
+            cinsCb.SelectedIndex = -1;
+            dateTimePicker1.Value = DateTime.Now;
+
+           
+            adTb.Text = dataGridView1.Rows[rowIndex].Cells["PersAd"].Value.ToString();
+            soyadTb.Text = dataGridView1.Rows[rowIndex].Cells["PersSoyAd"].Value.ToString();
+            noTb.Text = dataGridView1.Rows[rowIndex].Cells["PersNo"].Value.ToString();
+            cinsCb.SelectedItem = dataGridView1.Rows[rowIndex].Cells["Cinsiyet"].Value.ToString();
+
+            
+            DateTime dateValue;
+            if (DateTime.TryParse(dataGridView1.Rows[rowIndex].Cells["KayitTarihi"].Value.ToString(), out dateValue))
+            {
+                dateTimePicker1.Value = dateValue;
+            }
+            else
+            {
+                dateTimePicker1.Value = DateTime.Now; 
+            }
+
+           
+            personelMaas.Text = dataGridView1.Rows[rowIndex].Cells["Pmaas"].Value.ToString();
+        
+    }
     }
     
     
