@@ -31,8 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(stok));
             this.dtpTarih = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtMiktar = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -44,13 +42,17 @@
             this.label4 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.satilanTb = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.uretilenTb = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dtpTarih
             // 
-            this.dtpTarih.Location = new System.Drawing.Point(806, 120);
+            this.dtpTarih.Location = new System.Drawing.Point(843, 120);
             this.dtpTarih.Name = "dtpTarih";
             this.dtpTarih.Size = new System.Drawing.Size(200, 22);
             this.dtpTarih.TabIndex = 78;
@@ -64,23 +66,6 @@
             this.label3.Size = new System.Drawing.Size(47, 20);
             this.label3.TabIndex = 71;
             this.label3.Text = "Tarih";
-            // 
-            // txtMiktar
-            // 
-            this.txtMiktar.Location = new System.Drawing.Point(380, 110);
-            this.txtMiktar.Name = "txtMiktar";
-            this.txtMiktar.Size = new System.Drawing.Size(154, 22);
-            this.txtMiktar.TabIndex = 70;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(253, 110);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 20);
-            this.label1.TabIndex = 69;
-            this.label1.Text = "kalan";
             // 
             // dataGridView1
             // 
@@ -149,7 +134,7 @@
             // 
             // txtUrunAdi
             // 
-            this.txtUrunAdi.Location = new System.Drawing.Point(380, 170);
+            this.txtUrunAdi.Location = new System.Drawing.Point(380, 120);
             this.txtUrunAdi.Name = "txtUrunAdi";
             this.txtUrunAdi.Size = new System.Drawing.Size(154, 22);
             this.txtUrunAdi.TabIndex = 82;
@@ -158,7 +143,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(253, 170);
+            this.label2.Location = new System.Drawing.Point(253, 120);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 20);
             this.label2.TabIndex = 81;
@@ -166,7 +151,7 @@
             // 
             // txtFiyat
             // 
-            this.txtFiyat.Location = new System.Drawing.Point(806, 161);
+            this.txtFiyat.Location = new System.Drawing.Point(843, 187);
             this.txtFiyat.Name = "txtFiyat";
             this.txtFiyat.Size = new System.Drawing.Size(154, 22);
             this.txtFiyat.TabIndex = 84;
@@ -175,11 +160,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label4.Location = new System.Drawing.Point(667, 161);
+            this.label4.Location = new System.Drawing.Point(667, 189);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 20);
+            this.label4.Size = new System.Drawing.Size(119, 20);
             this.label4.TabIndex = 83;
-            this.label4.Text = "Ürün Fiyat";
+            this.label4.Text = "Ürün Ton Fiyat";
             // 
             // button4
             // 
@@ -204,11 +189,49 @@
             this.pictureBox1.TabIndex = 79;
             this.pictureBox1.TabStop = false;
             // 
+            // satilanTb
+            // 
+            this.satilanTb.Location = new System.Drawing.Point(380, 191);
+            this.satilanTb.Name = "satilanTb";
+            this.satilanTb.Size = new System.Drawing.Size(154, 22);
+            this.satilanTb.TabIndex = 86;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label5.Location = new System.Drawing.Point(253, 191);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 20);
+            this.label5.TabIndex = 85;
+            this.label5.Text = "Satılan";
+            // 
+            // uretilenTb
+            // 
+            this.uretilenTb.Location = new System.Drawing.Point(610, 270);
+            this.uretilenTb.Name = "uretilenTb";
+            this.uretilenTb.Size = new System.Drawing.Size(154, 22);
+            this.uretilenTb.TabIndex = 88;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label6.Location = new System.Drawing.Point(471, 270);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(67, 20);
+            this.label6.TabIndex = 87;
+            this.label6.Text = "Üretilen";
+            // 
             // stok
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1338, 795);
+            this.Controls.Add(this.uretilenTb);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.satilanTb);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.txtFiyat);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtUrunAdi);
@@ -216,8 +239,6 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.dtpTarih);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtMiktar);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -239,8 +260,6 @@
 
         private System.Windows.Forms.DateTimePicker dtpTarih;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtMiktar;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
@@ -252,5 +271,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtFiyat;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox satilanTb;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox uretilenTb;
+        private System.Windows.Forms.Label label6;
     }
 }

@@ -138,7 +138,7 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(476, 40);
+            this.dataGridView1.Location = new System.Drawing.Point(751, 60);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -147,7 +147,7 @@
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.Color.DarkBlue;
+            this.button3.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(55, 227);
@@ -160,7 +160,7 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.DarkBlue;
+            this.button2.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(55, 166);
@@ -173,7 +173,7 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.DarkBlue;
+            this.button1.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(55, 103);
@@ -186,7 +186,7 @@
             // 
             // listeleBtn
             // 
-            this.listeleBtn.BackColor = System.Drawing.Color.DarkBlue;
+            this.listeleBtn.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.listeleBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.listeleBtn.ForeColor = System.Drawing.Color.White;
             this.listeleBtn.Location = new System.Drawing.Point(55, 40);
@@ -199,24 +199,24 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::fabrikaotomasyonu.Properties.Resources.pancar2;
+            this.pictureBox1.Image = global::fabrikaotomasyonu.Properties.Resources.factory_background_elements_vector;
             this.pictureBox1.Location = new System.Drawing.Point(0, -1);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(967, 560);
+            this.pictureBox1.Size = new System.Drawing.Size(1362, 795);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 63;
             this.pictureBox1.TabStop = false;
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.Color.DarkBlue;
+            this.button4.BackgroundImage = global::fabrikaotomasyonu.Properties.Resources.back_1689837_1280;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(55, 294);
+            this.button4.Location = new System.Drawing.Point(1293, 12);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(220, 43);
+            this.button4.Size = new System.Drawing.Size(47, 45);
             this.button4.TabIndex = 64;
-            this.button4.Text = "geri";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -224,7 +224,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(966, 556);
+            this.ClientSize = new System.Drawing.Size(1363, 792);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.idm);

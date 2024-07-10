@@ -20,29 +20,34 @@ namespace fabrikaotomasyonu
             InitializeComponent();
             connection = new SqlConnection(connectionString);
         }
-        
-        
+
+
         // Ekle
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtUrunAdi.Text) || string.IsNullOrEmpty(txtMiktar.Text) || string.IsNullOrEmpty(txtFiyat.Text))
+            if (string.IsNullOrEmpty(txtUrunAdi.Text) || string.IsNullOrEmpty(uretilenTb.Text) || string.IsNullOrEmpty(satilanTb.Text) || string.IsNullOrEmpty(txtFiyat.Text))
             {
                 MessageBox.Show("Lütfen tüm alanları doldurun.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             try
             {
-                string query = "INSERT INTO stokTbl (Ad, Miktar, Fiyat, Tarih) VALUES (@Ad, @Miktar, @Fiyat, @Tarih)";
-
+                string query = "INSERT INTO stokTbl (Ad, Uretilen, Satilan, Kalan, Fiyat, Tarih) VALUES (@Ad, @Uretilen, @Satilan, @Kalan, @Fiyat, @Tarih)";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Ad", txtUrunAdi.Text);
 
-                    if (int.TryParse(txtMiktar.Text, out int miktar))
-                        command.Parameters.AddWithValue("@Miktar", miktar);
+                    if (int.TryParse(uretilenTb.Text, out int uretilen) && int.TryParse(satilanTb.Text, out int satilan))
+                    {
+                        int miktar = uretilen - satilan;
+                        command.Parameters.AddWithValue("@Uretilen", uretilen);
+                        command.Parameters.AddWithValue("@Satilan", satilan);
+                        command.Parameters.AddWithValue("@Kalan", miktar);
+                    }
                     else
                     {
-                        
+                        MessageBox.Show("Lütfen geçerli sayılar girin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -50,7 +55,7 @@ namespace fabrikaotomasyonu
                         command.Parameters.AddWithValue("@Fiyat", fiyat);
                     else
                     {
-                        
+                        MessageBox.Show("Lütfen geçerli bir fiyat girin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -60,11 +65,10 @@ namespace fabrikaotomasyonu
                     command.ExecuteNonQuery();
                 }
 
-                Listele(); 
+                Listele();
             }
             catch (SqlException ex)
             {
-                
                 Console.WriteLine("SQL Hatası: " + ex.Message);
             }
             finally
@@ -83,60 +87,62 @@ namespace fabrikaotomasyonu
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                try
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                if (selectedRow.Cells["Id"].Value != null)
                 {
-                    int selectedId = (int)dataGridView1.SelectedRows[0].Cells["Id"].Value;
-
-                    
-                    string query = "UPDATE stokTbl SET Ad = @Ad, Miktar = @Miktar, Fiyat = @Fiyat, Tarih = @Tarih WHERE id = @Id";
-
-                    
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    try
                     {
-                        
-                        command.Parameters.AddWithValue("@Id", selectedId);
-                        command.Parameters.AddWithValue("@Ad", txtUrunAdi.Text);
+                        int selectedId = (int)selectedRow.Cells["Id"].Value;
 
-                        if (int.TryParse(txtMiktar.Text, out int miktar))
-                            command.Parameters.AddWithValue("@Miktar", miktar);
-                        else
+                        string query = "UPDATE stokTbl SET Ad = @Ad, Uretilen = @Uretilen, Satilan = @Satilan, Kalan = @Kalan, Fiyat = @Fiyat, Tarih = @Tarih WHERE id = @Id";
+                        using (SqlCommand command = new SqlCommand(query, connection))
                         {
-                            MessageBox.Show("Miktar alanına geçerli bir sayı giriniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return; 
+                            command.Parameters.AddWithValue("@Id", selectedId);
+                            command.Parameters.AddWithValue("@Ad", txtUrunAdi.Text);
+
+                            if (int.TryParse(uretilenTb.Text, out int uretilen) && int.TryParse(satilanTb.Text, out int satilan))
+                            {
+                                int miktar = uretilen - satilan; // Kalan miktar hesaplanıyor
+                                command.Parameters.AddWithValue("@Uretilen", uretilen);
+                                command.Parameters.AddWithValue("@Satilan", satilan);
+                                command.Parameters.AddWithValue("@Kalan", miktar);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Lütfen geçerli sayılar girin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+
+                            if (decimal.TryParse(txtFiyat.Text, out decimal fiyat))
+                                command.Parameters.AddWithValue("@Fiyat", fiyat);
+                            else
+                            {
+                                MessageBox.Show("Lütfen geçerli bir fiyat girin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+
+                            command.Parameters.AddWithValue("@Tarih", dtpTarih.Value);
+
+                            connection.Open();
+                            command.ExecuteNonQuery();
                         }
 
-                        if (decimal.TryParse(txtFiyat.Text, out decimal fiyat))
-                            command.Parameters.AddWithValue("@Fiyat", fiyat);
-                        else
-                        {
-                            MessageBox.Show("Fiyat alanına geçerli bir sayı giriniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return;
-                        }
-
-                        command.Parameters.AddWithValue("@Tarih", dtpTarih.Value);
-
-                       
-                        connection.Open();
-
-                        
-                        command.ExecuteNonQuery();
+                        MessageBox.Show("Veri başarıyla güncellendi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Listele();
                     }
-
-                    MessageBox.Show("Veri başarıyla güncellendi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                   
-                    Listele();
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Veri güncellenirken bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        if (connection.State == ConnectionState.Open)
+                            connection.Close();
+                    }
                 }
-                catch (SqlException ex)
+                else
                 {
-                    
-                    MessageBox.Show("Veri güncellenirken bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    
-                    if (connection.State == ConnectionState.Open)
-                        connection.Close();
+                    MessageBox.Show("Lütfen güncellenecek bir satır seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
@@ -150,14 +156,14 @@ namespace fabrikaotomasyonu
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                if (dataGridView1.SelectedRows[0].Cells["Id"].Value != null)
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                if (selectedRow.Cells["Id"].Value != null)
                 {
                     try
                     {
-                        int selectedId = (int)dataGridView1.SelectedRows[0].Cells["Id"].Value;
+                        int selectedId = (int)selectedRow.Cells["Id"].Value;
 
                         string query = "DELETE FROM stokTbl WHERE id = @Id";
-
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
                             command.Parameters.AddWithValue("@Id", selectedId);
@@ -181,11 +187,20 @@ namespace fabrikaotomasyonu
                     {
                         MessageBox.Show("Veri silinirken bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                    finally
+                    {
+                        if (connection.State == ConnectionState.Open)
+                            connection.Close();
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Lütfen silinecek bir satır seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Lütfen silinecek bir satır seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         // Geri
@@ -199,7 +214,9 @@ namespace fabrikaotomasyonu
         {
             public int Id { get; set; }
             public string Ad { get; set; }
-            public int Miktar { get; set; }
+            public int Uretilen { get; set; }
+            public int Satilan { get; set; }
+            public int Kalan { get; set; }
             public decimal Fiyat { get; set; }
             public DateTime Tarih { get; set; }
         }
@@ -211,37 +228,31 @@ namespace fabrikaotomasyonu
             adapter.Fill(table);
             dataGridView1.DataSource = table;
         }
-       
+
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count)
             {
                 DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
 
-               
-                if (selectedRow.Cells["Id"].Value != null &&
-                    selectedRow.Cells["Ad"].Value != null &&
-                    selectedRow.Cells["Miktar"].Value != null &&
-                    selectedRow.Cells["Fiyat"].Value != null &&
-                    selectedRow.Cells["Tarih"].Value != null &&
-                    !string.IsNullOrEmpty(selectedRow.Cells["Ad"].Value.ToString()) &&
-                    !string.IsNullOrEmpty(selectedRow.Cells["Miktar"].Value.ToString()) &&
-                    !string.IsNullOrEmpty(selectedRow.Cells["Fiyat"].Value.ToString()))
+                if (selectedRow.Cells["Id"].Value != DBNull.Value && selectedRow.Cells["Id"].Value != null)
                 {
-                    int selectedId = (int)selectedRow.Cells["Id"].Value;
-                    txtUrunAdi.Text = selectedRow.Cells["Ad"].Value.ToString();
-                    txtMiktar.Text = selectedRow.Cells["Miktar"].Value.ToString();
-                    txtFiyat.Text = selectedRow.Cells["Fiyat"].Value.ToString();
-                    dtpTarih.Value = (DateTime)selectedRow.Cells["Tarih"].Value;
+                    txtUrunAdi.Text = selectedRow.Cells["Ad"].Value?.ToString() ?? "";
+                    uretilenTb.Text = selectedRow.Cells["Uretilen"].Value?.ToString() ?? "";
+                    satilanTb.Text = selectedRow.Cells["Satilan"].Value?.ToString() ?? "";
+                    txtFiyat.Text = selectedRow.Cells["Fiyat"].Value?.ToString() ?? "";
+                    dtpTarih.Value = selectedRow.Cells["Tarih"].Value != DBNull.Value && selectedRow.Cells["Tarih"].Value != null
+                                     ? (DateTime)selectedRow.Cells["Tarih"].Value
+                                     : DateTime.Today;
                 }
                 else
                 {
-                    
                     txtUrunAdi.Text = "";
-                    txtMiktar.Text = "";
+                    uretilenTb.Text = "";
+                    satilanTb.Text = "";
                     txtFiyat.Text = "";
-                    dtpTarih.Value = DateTime.Today; 
+                    dtpTarih.Value = DateTime.Today;
                 }
             }
         }
