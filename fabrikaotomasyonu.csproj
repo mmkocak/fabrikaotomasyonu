@@ -162,7 +162,12 @@
     <None Include="Resources\yemek1.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\pngwing.com.png" />
     <None Include="Resources\back-1689837_1280.png" />
+    <None Include="Resources\arkaplan1.jpg" />
+    <None Include="Resources\7nud.gif" />
+    <None Include="Resources\calculations.png" />
+    <None Include="Resources\expenses.png" />
     <Content Include="Resources\factory-background-elements-vector.jpg" />
     <None Include="Resources\factory-background-elements-vector1.jpg" />
   </ItemGroup>
