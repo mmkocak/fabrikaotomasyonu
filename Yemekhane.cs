@@ -184,8 +184,8 @@ namespace fabrikaotomasyonu
         private void button4_Click(object sender, EventArgs e)
         {
             Anasayfa anasayfa = new Anasayfa();
-            this.Hide();
             anasayfa.Show();
+            this.Hide();
         }
         // Listeleme Fonksiyonu
         private void ListeleYemekMenusu()

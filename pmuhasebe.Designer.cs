@@ -31,33 +31,33 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.giderlistele = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.giderGuncelle = new System.Windows.Forms.Button();
+            this.giderSil = new System.Windows.Forms.Button();
+            this.giderEkle = new System.Windows.Forms.Button();
+            this.birimAdTb = new System.Windows.Forms.TextBox();
+            this.birimNotRTB = new System.Windows.Forms.RichTextBox();
+            this.birimTarihDTP = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.birimUcretTb = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.alinanGuncelle = new System.Windows.Forms.Button();
+            this.alinanSil = new System.Windows.Forms.Button();
+            this.utarihDTP = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.alinanEkle = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.ubrimfiyatTb = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.uadetTb = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.uadTb = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.hesapla = new System.Windows.Forms.Button();
             this.listeleBtn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.alinanSil = new System.Windows.Forms.Button();
-            this.alinanGuncelle = new System.Windows.Forms.Button();
-            this.giderEkle = new System.Windows.Forms.Button();
-            this.giderSil = new System.Windows.Forms.Button();
-            this.giderGuncelle = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -88,6 +88,7 @@
             this.giderlistele.Size = new System.Drawing.Size(159, 162);
             this.giderlistele.TabIndex = 73;
             this.giderlistele.UseVisualStyleBackColor = false;
+            this.giderlistele.Click += new System.EventHandler(this.giderlistele_Click);
             // 
             // groupBox2
             // 
@@ -96,11 +97,11 @@
             this.groupBox2.Controls.Add(this.giderGuncelle);
             this.groupBox2.Controls.Add(this.giderSil);
             this.groupBox2.Controls.Add(this.giderEkle);
-            this.groupBox2.Controls.Add(this.textBox5);
-            this.groupBox2.Controls.Add(this.richTextBox1);
-            this.groupBox2.Controls.Add(this.dateTimePicker2);
+            this.groupBox2.Controls.Add(this.birimAdTb);
+            this.groupBox2.Controls.Add(this.birimNotRTB);
+            this.groupBox2.Controls.Add(this.birimTarihDTP);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.textBox4);
+            this.groupBox2.Controls.Add(this.birimUcretTb);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label11);
@@ -111,27 +112,66 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Giderler";
             // 
-            // textBox5
+            // giderGuncelle
             // 
-            this.textBox5.Location = new System.Drawing.Point(131, 37);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(200, 22);
-            this.textBox5.TabIndex = 74;
+            this.giderGuncelle.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.giderGuncelle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.giderGuncelle.ForeColor = System.Drawing.Color.White;
+            this.giderGuncelle.Location = new System.Drawing.Point(258, 252);
+            this.giderGuncelle.Name = "giderGuncelle";
+            this.giderGuncelle.Size = new System.Drawing.Size(128, 40);
+            this.giderGuncelle.TabIndex = 77;
+            this.giderGuncelle.Text = "Güncelle";
+            this.giderGuncelle.UseVisualStyleBackColor = false;
+            this.giderGuncelle.Click += new System.EventHandler(this.giderGuncelle_Click);
             // 
-            // richTextBox1
+            // giderSil
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(131, 69);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(200, 68);
-            this.richTextBox1.TabIndex = 73;
-            this.richTextBox1.Text = "";
+            this.giderSil.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.giderSil.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.giderSil.ForeColor = System.Drawing.Color.White;
+            this.giderSil.Location = new System.Drawing.Point(138, 252);
+            this.giderSil.Name = "giderSil";
+            this.giderSil.Size = new System.Drawing.Size(114, 40);
+            this.giderSil.TabIndex = 76;
+            this.giderSil.Text = "Sil";
+            this.giderSil.UseVisualStyleBackColor = false;
+            this.giderSil.Click += new System.EventHandler(this.giderSil_Click);
             // 
-            // dateTimePicker2
+            // giderEkle
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(131, 188);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker2.TabIndex = 61;
+            this.giderEkle.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.giderEkle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.giderEkle.ForeColor = System.Drawing.Color.White;
+            this.giderEkle.Location = new System.Drawing.Point(11, 252);
+            this.giderEkle.Name = "giderEkle";
+            this.giderEkle.Size = new System.Drawing.Size(114, 40);
+            this.giderEkle.TabIndex = 75;
+            this.giderEkle.Text = "Ekle";
+            this.giderEkle.UseVisualStyleBackColor = false;
+            this.giderEkle.Click += new System.EventHandler(this.giderEkle_Click);
+            // 
+            // birimAdTb
+            // 
+            this.birimAdTb.Location = new System.Drawing.Point(131, 37);
+            this.birimAdTb.Name = "birimAdTb";
+            this.birimAdTb.Size = new System.Drawing.Size(200, 22);
+            this.birimAdTb.TabIndex = 74;
+            // 
+            // birimNotRTB
+            // 
+            this.birimNotRTB.Location = new System.Drawing.Point(131, 69);
+            this.birimNotRTB.Name = "birimNotRTB";
+            this.birimNotRTB.Size = new System.Drawing.Size(200, 68);
+            this.birimNotRTB.TabIndex = 73;
+            this.birimNotRTB.Text = "";
+            // 
+            // birimTarihDTP
+            // 
+            this.birimTarihDTP.Location = new System.Drawing.Point(131, 188);
+            this.birimTarihDTP.Name = "birimTarihDTP";
+            this.birimTarihDTP.Size = new System.Drawing.Size(200, 22);
+            this.birimTarihDTP.TabIndex = 61;
             // 
             // label8
             // 
@@ -143,12 +183,12 @@
             this.label8.TabIndex = 60;
             this.label8.Text = "Tarih";
             // 
-            // textBox4
+            // birimUcretTb
             // 
-            this.textBox4.Location = new System.Drawing.Point(131, 143);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(200, 22);
-            this.textBox4.TabIndex = 58;
+            this.birimUcretTb.Location = new System.Drawing.Point(131, 143);
+            this.birimUcretTb.Name = "birimUcretTb";
+            this.birimUcretTb.Size = new System.Drawing.Size(200, 22);
+            this.birimUcretTb.TabIndex = 58;
             // 
             // label9
             // 
@@ -186,14 +226,14 @@
             this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.groupBox1.Controls.Add(this.alinanGuncelle);
             this.groupBox1.Controls.Add(this.alinanSil);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.utarihDTP);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.alinanEkle);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.ubrimfiyatTb);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.uadetTb);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.uadTb);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(896, 64);
             this.groupBox1.Name = "groupBox1";
@@ -202,12 +242,38 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Alınan";
             // 
-            // dateTimePicker1
+            // alinanGuncelle
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(131, 153);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker1.TabIndex = 61;
+            this.alinanGuncelle.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.alinanGuncelle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.alinanGuncelle.ForeColor = System.Drawing.Color.White;
+            this.alinanGuncelle.Location = new System.Drawing.Point(258, 201);
+            this.alinanGuncelle.Name = "alinanGuncelle";
+            this.alinanGuncelle.Size = new System.Drawing.Size(122, 40);
+            this.alinanGuncelle.TabIndex = 63;
+            this.alinanGuncelle.Text = "Güncelle";
+            this.alinanGuncelle.UseVisualStyleBackColor = false;
+            this.alinanGuncelle.Click += new System.EventHandler(this.alinanGuncelle_Click);
+            // 
+            // alinanSil
+            // 
+            this.alinanSil.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.alinanSil.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.alinanSil.ForeColor = System.Drawing.Color.White;
+            this.alinanSil.Location = new System.Drawing.Point(131, 201);
+            this.alinanSil.Name = "alinanSil";
+            this.alinanSil.Size = new System.Drawing.Size(121, 40);
+            this.alinanSil.TabIndex = 62;
+            this.alinanSil.Text = "Sil";
+            this.alinanSil.UseVisualStyleBackColor = false;
+            this.alinanSil.Click += new System.EventHandler(this.alinanSil_Click);
+            // 
+            // utarihDTP
+            // 
+            this.utarihDTP.Location = new System.Drawing.Point(131, 153);
+            this.utarihDTP.Name = "utarihDTP";
+            this.utarihDTP.Size = new System.Drawing.Size(200, 22);
+            this.utarihDTP.TabIndex = 61;
             // 
             // label7
             // 
@@ -230,13 +296,14 @@
             this.alinanEkle.TabIndex = 59;
             this.alinanEkle.Text = "Ekle";
             this.alinanEkle.UseVisualStyleBackColor = false;
+            this.alinanEkle.Click += new System.EventHandler(this.alinanEkle_Click);
             // 
-            // textBox3
+            // ubrimfiyatTb
             // 
-            this.textBox3.Location = new System.Drawing.Point(131, 115);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(154, 22);
-            this.textBox3.TabIndex = 58;
+            this.ubrimfiyatTb.Location = new System.Drawing.Point(131, 115);
+            this.ubrimfiyatTb.Name = "ubrimfiyatTb";
+            this.ubrimfiyatTb.Size = new System.Drawing.Size(154, 22);
+            this.ubrimfiyatTb.TabIndex = 58;
             // 
             // label6
             // 
@@ -248,12 +315,12 @@
             this.label6.TabIndex = 57;
             this.label6.Text = "Birim Fiyat";
             // 
-            // textBox2
+            // uadetTb
             // 
-            this.textBox2.Location = new System.Drawing.Point(131, 77);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(154, 22);
-            this.textBox2.TabIndex = 56;
+            this.uadetTb.Location = new System.Drawing.Point(131, 77);
+            this.uadetTb.Name = "uadetTb";
+            this.uadetTb.Size = new System.Drawing.Size(154, 22);
+            this.uadetTb.TabIndex = 56;
             // 
             // label3
             // 
@@ -265,12 +332,12 @@
             this.label3.TabIndex = 55;
             this.label3.Text = "Ürün Adet";
             // 
-            // textBox1
+            // uadTb
             // 
-            this.textBox1.Location = new System.Drawing.Point(131, 39);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(154, 22);
-            this.textBox1.TabIndex = 54;
+            this.uadTb.Location = new System.Drawing.Point(131, 39);
+            this.uadTb.Name = "uadTb";
+            this.uadTb.Size = new System.Drawing.Size(154, 22);
+            this.uadTb.TabIndex = 54;
             // 
             // label2
             // 
@@ -307,6 +374,7 @@
             this.hesapla.Size = new System.Drawing.Size(153, 162);
             this.hesapla.TabIndex = 47;
             this.hesapla.UseVisualStyleBackColor = false;
+            this.hesapla.Click += new System.EventHandler(this.hesapla_Click);
             // 
             // listeleBtn
             // 
@@ -319,6 +387,7 @@
             this.listeleBtn.Size = new System.Drawing.Size(151, 164);
             this.listeleBtn.TabIndex = 46;
             this.listeleBtn.UseVisualStyleBackColor = false;
+            this.listeleBtn.Click += new System.EventHandler(this.listeleBtn_Click);
             // 
             // pictureBox1
             // 
@@ -329,66 +398,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 63;
             this.pictureBox1.TabStop = false;
-            // 
-            // alinanSil
-            // 
-            this.alinanSil.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.alinanSil.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.alinanSil.ForeColor = System.Drawing.Color.White;
-            this.alinanSil.Location = new System.Drawing.Point(131, 201);
-            this.alinanSil.Name = "alinanSil";
-            this.alinanSil.Size = new System.Drawing.Size(121, 40);
-            this.alinanSil.TabIndex = 62;
-            this.alinanSil.Text = "Sil";
-            this.alinanSil.UseVisualStyleBackColor = false;
-            // 
-            // alinanGuncelle
-            // 
-            this.alinanGuncelle.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.alinanGuncelle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.alinanGuncelle.ForeColor = System.Drawing.Color.White;
-            this.alinanGuncelle.Location = new System.Drawing.Point(258, 201);
-            this.alinanGuncelle.Name = "alinanGuncelle";
-            this.alinanGuncelle.Size = new System.Drawing.Size(114, 40);
-            this.alinanGuncelle.TabIndex = 63;
-            this.alinanGuncelle.Text = "Güncelle";
-            this.alinanGuncelle.UseVisualStyleBackColor = false;
-            // 
-            // giderEkle
-            // 
-            this.giderEkle.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.giderEkle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.giderEkle.ForeColor = System.Drawing.Color.White;
-            this.giderEkle.Location = new System.Drawing.Point(11, 252);
-            this.giderEkle.Name = "giderEkle";
-            this.giderEkle.Size = new System.Drawing.Size(114, 40);
-            this.giderEkle.TabIndex = 75;
-            this.giderEkle.Text = "Ekle";
-            this.giderEkle.UseVisualStyleBackColor = false;
-            // 
-            // giderSil
-            // 
-            this.giderSil.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.giderSil.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.giderSil.ForeColor = System.Drawing.Color.White;
-            this.giderSil.Location = new System.Drawing.Point(138, 252);
-            this.giderSil.Name = "giderSil";
-            this.giderSil.Size = new System.Drawing.Size(114, 40);
-            this.giderSil.TabIndex = 76;
-            this.giderSil.Text = "Sil";
-            this.giderSil.UseVisualStyleBackColor = false;
-            // 
-            // giderGuncelle
-            // 
-            this.giderGuncelle.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.giderGuncelle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.giderGuncelle.ForeColor = System.Drawing.Color.White;
-            this.giderGuncelle.Location = new System.Drawing.Point(258, 252);
-            this.giderGuncelle.Name = "giderGuncelle";
-            this.giderGuncelle.Size = new System.Drawing.Size(114, 40);
-            this.giderGuncelle.TabIndex = 77;
-            this.giderGuncelle.Text = "Güncelle";
-            this.giderGuncelle.UseVisualStyleBackColor = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pmuhasebe
             // 
@@ -424,24 +434,24 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox ubrimfiyatTb;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox uadetTb;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox uadTb;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button alinanEkle;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker utarihDTP;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker birimTarihDTP;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox birimUcretTb;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.RichTextBox birimNotRTB;
+        private System.Windows.Forms.TextBox birimAdTb;
         private System.Windows.Forms.Button giderlistele;
         private System.Windows.Forms.Button alinanGuncelle;
         private System.Windows.Forms.Button alinanSil;
